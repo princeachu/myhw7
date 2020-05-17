@@ -25,7 +25,55 @@
 //     console.log('IM DONE')
 // })
 
-const questions = [];
+const questions = require("inquirer");
+
+questions.prompt([
+  {
+    type: "Project Title",
+    message: "What is your Project title?",
+    name: "title",
+  },
+  {
+    type: "Project description",
+    message: "What is your Project description?",
+    name: "description",
+  },
+  {
+    type: "Table of Contents",
+    message: "List the table of contents",
+    name: "contents",
+  },
+  {
+    type: "Installation",
+    message: "What are the steps required to install your project?",
+    name: "installation",
+  },
+  {
+    type: "Usage",
+    message: "Provide instructions and examples for use.",
+    name: "usage",
+  },
+  {
+    type: "License",
+    message: "License?",
+    name: "license",
+  },
+  {
+    type: "Contributing",
+    message: "Who were your contributors?",
+    name: "contribution",
+  },
+  {
+    type: "Tests",
+    message: "",
+    name: "tests",
+  },
+  {
+    type: "Question",
+    message: "Github username",
+    name: "question",
+  },
+]);
 
 function writeToFile(fileName, data) {}
 
