@@ -24,59 +24,70 @@
 // }
 //     console.log('IM DONE')
 // })
-
-const questions = require("inquirer");
-
-questions.prompt([
+const inquirer = require("inquirer");
+const fs = require("fs");
+const path = require("path");
+var togenerateMarkdown = require("./utils/generateMarkdown");
+const questions = [
   {
-    type: "Project Title",
+    type: "input",
     message: "What is your Project title?",
     name: "title",
   },
   {
-    type: "Project description",
+    type: "input",
     message: "What is your Project description?",
     name: "description",
   },
+
   {
-    type: "Table of Contents",
-    message: "List the table of contents",
-    name: "contents",
-  },
-  {
-    type: "Installation",
+    type: "input",
     message: "What are the steps required to install your project?",
     name: "installation",
   },
   {
-    type: "Usage",
+    type: "input",
     message: "Provide instructions and examples for use.",
     name: "usage",
   },
   {
-    type: "License",
-    message: "License?",
-    name: "license",
-  },
-  {
-    type: "Contributing",
+    type: "input",
     message: "Who were your contributors?",
     name: "contribution",
   },
   {
-    type: "Tests",
-    message: "",
+    type: "input",
+    message: "What tests do you need to run",
     name: "tests",
   },
   {
-    type: "Question",
-    message: "Github username",
-    name: "question",
+    type: "list",
+    name: "tests",
+    message: "What license does your project have?",
+    choices: ["GNU GPLv3", "MIT License"],
   },
-]);
+  {
+    type: "input",
+    message: "What is you github username?",
+    name: "username",
+  },
+  {
+    type: "input",
+    message: "Whats your email?",
+    name: "email",
+  },
+];
+// path.join(process.cwd(), fileName),
+// .then(answers);
 
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+  return fs.writeFileSync(path.join(process.cwd(), fileName), data);
+}
 
-function init() {}
+function init() {
+  inquirer.prompt(questions).then(function (response) {
+    writeToFile("readme.md", togenerateMarkdown(response));
+  });
+}
 
 init();
