@@ -23,6 +23,7 @@ npm install
 ## Usage
 
 While in the index directory of your terminal run the following, node index.
+[Application preview](https://drive.google.com/file/d/1u2xJ3A8yCF6lXP4ttlEsxavI45fSdvei/view)
 
 ## Contributions
 
