@@ -1,33 +1,12 @@
-// req inquierer, axios, genererateMarkdown.js, fs
-
-// ask the user a bunch of questions
-// -- use inquirer to ask a bunch of questions
-// -- get the object w/ all the answers
-// then block
-// call out to the users gihub to get prof pic and email
-// -- use axios to make an http call to dudes github -- promise
-// -- then block
-// -- sift thru that response and find the info u need
-// -- create an obj w/ all that info
-/*
-    {
-        title: "who is the black panther",
-        profilePicUrl: "http://princeAchu"
-    }
-*/
-// pass all of that crap to the genMarkdown funct
-// -- catch the response in a var (makr)
-// use that result to create a .md file (README.MD)
-// -- fs.writeFile('Readme.md', makr, function(err) {
-// if (err) {
-//         console.log(err)
-// }
-//     console.log('IM DONE')
-// })
+// Pulls the inquirer file from the internet and stores it in the inquirer variable const
 const inquirer = require("inquirer");
+// Pulls the fs file from the internet storing it in the fs const variable
 const fs = require("fs");
+// Pulls the path file from the internet storing it in the path const variable
 const path = require("path");
-var togenerateMarkdown = require("./utils/generateMarkdown");
+// Pulls the data in the generateMarkdown.js file storing it in the const togenerateMarkdown
+const togenerateMarkdown = require("./utils/generateMarkdown");
+// uses the prompt function built into iquirer Storing the questions in an array of properties in the const questions
 const questions = [
   {
     type: "input",
@@ -43,7 +22,7 @@ const questions = [
   {
     type: "input",
     message: "What are the steps required to install your project?",
-    name: "installation",
+    name: "install",
   },
   {
     type: "input",
@@ -62,7 +41,7 @@ const questions = [
   },
   {
     type: "list",
-    name: "tests",
+    name: "license",
     message: "What license does your project have?",
     choices: ["GNU GPLv3", "MIT License"],
   },
@@ -77,8 +56,6 @@ const questions = [
     name: "email",
   },
 ];
-// path.join(process.cwd(), fileName),
-// .then(answers);
 
 function writeToFile(fileName, data) {
   return fs.writeFileSync(path.join(process.cwd(), fileName), data);
